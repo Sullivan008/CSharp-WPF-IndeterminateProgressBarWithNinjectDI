@@ -1,0 +1,1 @@
+# CSharp-WPF_IndeterminateProgressBarWithNinjactDI
