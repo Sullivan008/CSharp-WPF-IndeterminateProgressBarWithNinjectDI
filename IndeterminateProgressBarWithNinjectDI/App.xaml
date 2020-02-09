@@ -1,0 +1,12 @@
+﻿<Application x:Class="IndeterminateProgressBarWithNinjectDI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:ninject="clr-namespace:IndeterminateProgressBarWithNinjectDI.Container.Ninject"
+             xmlns:mainWindow="clr-namespace:IndeterminateProgressBarWithNinjectDI.ViewModels.MainWindow"
+             StartupUri="Windows/MainWindow.xaml">
+    <Application.Resources>
+        <ninject:ServiceLocator x:Key="ServiceLocator" />
+
+        <DataTemplate DataType="{x:Type mainWindow:MainWindowViewModel}"/>
+    </Application.Resources>
+</Application>
