@@ -8,11 +8,12 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>IndeterminateProgressBarWithNinjectDI</RootNamespace>
     <AssemblyName>IndeterminateProgressBarWithNinjectDI</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,17 +53,20 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Container\Ninject\ServiceLocator.cs" />
-    <Compile Include="Container\Ninject\ServiceModule.cs" />
-    <Compile Include="Modules\General\Interfaces\IProgressBarWindowService.cs" />
-    <Compile Include="Modules\General\Services\ProgressBarWindowService.cs" />
-    <Compile Include="Modules\MainWindow\Interfaces\IMainWindowLogicHandler.cs" />
-    <Compile Include="Modules\MainWindow\Interfaces\ISearchLastNumberService.cs" />
-    <Compile Include="Modules\MainWindow\Handlers\MainWindowLogicHandler.cs" />
-    <Compile Include="Modules\MainWindow\Services\SearchLastNumberService.cs" />
-    <Compile Include="ViewModels\MainWindow\MainWindowViewModel.cs" />
-    <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Page Include="Windows\MainWindow.xaml">
+    <Compile Include="Container\Bootstrapper.cs" />
+    <Compile Include="Container\Ninject\DependencyInjector.cs" />
+    <Compile Include="Container\Ninject\Modules\Windows\MainWindowModule.cs" />
+    <Compile Include="Container\Ninject\Modules\Windows\ProgressWindowModule.cs" />
+    <Compile Include="Core\Commands\RelayCommandAsync.cs" />
+    <Compile Include="Windows\Main\Commands\LastNumberSearchCommand.cs" />
+    <Compile Include="Windows\Progress\Services\Interfaces\IProgressWindowService.cs" />
+    <Compile Include="Windows\Progress\Services\ProgressWindowService.cs" />
+    <Compile Include="Windows\Main\Services\Search\Interfaces\ISearchLastNumberService.cs" />
+    <Compile Include="Windows\Main\Services\Search\SearchLastNumberService.cs" />
+    <Compile Include="Core\ViewModels\ViewModelBase.cs" />
+    <Compile Include="Windows\Progress\ViewModels\Interfaces\IProgressWindowViewModel.cs" />
+    <Compile Include="Windows\Progress\ViewModels\ProgressWindowViewModel.cs" />
+    <Page Include="Windows\Main\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -70,18 +74,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Command\DelegateCommand.cs" />
-    <Compile Include="Windows\MainWindow.xaml.cs">
+    <Compile Include="Windows\Main\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Windows\ProgressWindow.xaml">
+    <Page Include="Windows\Progress\ProgressWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Windows\ProgressWindow.xaml.cs">
+    <Compile Include="Windows\Main\ViewModels\Interfaces\IMainWindowViewModel.cs" />
+    <Compile Include="Windows\Main\ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Windows\Progress\ProgressWindow.xaml.cs">
       <DependentUpon>ProgressWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
